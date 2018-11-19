@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(MeshRenderer))]
 public class NodeVisual : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private TextMesh fCost, gCost, hCost;
+   // [SerializeField] private TextMesh fCost, gCost, hCost;
 
     private Node node;
 
@@ -91,14 +91,14 @@ public class NodeVisual : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
         SetTint(color);
     }
 
-    public void EnableCostVisuals(bool enable)
-    {
-        fCost.GetComponent<Renderer>().enabled = enable;
-        gCost.GetComponent<Renderer>().enabled = enable;
-        hCost.GetComponent<Renderer>().enabled = enable;
+    //public void EnableCostVisuals(bool enable)
+    //{
+    //    fCost.GetComponent<Renderer>().enabled = enable;
+    //    gCost.GetComponent<Renderer>().enabled = enable;
+    //    hCost.GetComponent<Renderer>().enabled = enable;
 
-        fCost.text = node.FCost.ToString();
-        gCost.text = node.GCost.ToString();
-        hCost.text = node.HCost.ToString();
-    }
+    //    fCost.text = node.FCost.ToString();
+    //    gCost.text = node.GCost.ToString();
+    //    hCost.text = node.HCost.ToString();
+    //}
 }

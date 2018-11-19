@@ -25,6 +25,8 @@ public class Character : MonoBehaviour
 
     Queue<Node> path;
 
+    public CharacterStat Strength;
+
     private void Start()
     {
         fsm = GetComponent<StateMachine>();
