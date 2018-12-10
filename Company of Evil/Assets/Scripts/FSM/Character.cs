@@ -18,6 +18,10 @@ public class Character : MonoBehaviour
     [SerializeField] private float singleMoveTime = 0.5f;
     [SerializeField] private float rotationSpeed = 5f;
 
+    //[SerializeField] Inventory inventory;
+    //[SerializeField] EquipmentPanel equipmentPanel;
+    //[SerializeField] StatPanel statPanel;
+
     private StateMachine fsm;
 
     private const string idleTrigger = "Idle";
@@ -26,6 +30,18 @@ public class Character : MonoBehaviour
     Queue<Node> path;
 
     public CharacterStat Strength;
+    public CharacterStat Agility;
+    public CharacterStat Intelligence;
+    public CharacterStat Vitality;
+
+    private void Awake()
+    {
+        //statPanel.SetStats(Strength, Agility, Intelligence, Vitality);
+        //statPanel.UpdateStatValues();
+
+        //inventory.OnItemRightClickedEvent += EquipFromInventory;
+        //equipmentPanel.OnItemRightClickedEvent += UnequipFromEquipPanel;
+    }
 
     private void Start()
     {
@@ -138,4 +154,53 @@ public class Character : MonoBehaviour
             Gizmos.DrawWireCube(GridManager.Instance.GetWorldPosition(startPoint), Vector3.one);
         }
     }
+
+    //private void EquipFromInventory(Item item)
+    //{
+    //    if (item is EquipableItem)
+    //    {
+    //        Equip((EquipableItem)item);
+    //    }
+    //}
+
+    //private void UnequipFromEquipPanel(Item item)
+    //{
+    //    if (item is EquipableItem)
+    //    {
+    //        Unequip((EquipableItem)item);
+    //    }
+    //}
+
+    //public void Equip(EquipableItem item)
+    //{
+    //    if (inventory.RemoveItem(item))
+    //    {
+    //        EquipableItem previousItem;
+    //        if (equipmentPanel.AddItem(item, out previousItem))
+    //        {
+    //            if (previousItem != null)
+    //            {
+    //                inventory.AddItem(previousItem);
+    //                previousItem.Unequip(this);
+    //                statPanel.UpdateStatValues();
+    //            }
+    //            item.Equip(this);
+    //            statPanel.UpdateStatValues();
+    //        }
+    //        else
+    //        {
+    //            inventory.AddItem(item);
+    //        }
+    //    }
+    //}
+
+    //public void Unequip(EquipableItem item)
+    //{
+    //    if (!inventory.IsFull() && equipmentPanel.RemoveItem(item))
+    //    {
+    //        item.Unequip(this);
+    //        statPanel.UpdateStatValues();
+    //        inventory.AddItem(item);
+    //    }
+    //}
 }
