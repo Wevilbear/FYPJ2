@@ -31,8 +31,6 @@ public class ItemTooltip : MonoBehaviour
         ItemStatsText.text = sb.ToString();
 
         gameObject.SetActive(true);
-
-        gameObject.SetActive(true);
     }
 
     public void HideTooltip()
