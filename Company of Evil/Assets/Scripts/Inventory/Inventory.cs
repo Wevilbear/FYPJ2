@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour {
 
     public event Action<Item> OnItemRightClickedEvent;
 
-    public void Awake()
+    public void Start()
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
