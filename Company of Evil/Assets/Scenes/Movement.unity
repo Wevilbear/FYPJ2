@@ -144,6 +144,7 @@ RectTransform:
   - {fileID: 2001471053}
   - {fileID: 656836765}
   - {fileID: 61969427}
+  - {fileID: 1085790844}
   m_Father: {fileID: 421328322}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,8 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de54f099fb0f6364f9844e6e44ddf2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 2001471054}
-  ValueText: {fileID: 656836766}
+  nameText: {fileID: 2001471054}
+  valueText: {fileID: 656836766}
+  tooltip: {fileID: 1212823932}
 --- !u!1 &50998188
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +279,7 @@ GameObject:
   - component: {fileID: 61969429}
   - component: {fileID: 61969428}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Seperator Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -480,7 +482,7 @@ GameObject:
   - component: {fileID: 171471650}
   - component: {fileID: 171471649}
   m_Layer: 5
-  m_Name: Stat Value
+  m_Name: Stat Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -538,7 +540,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: INTELLIGENCE
+  m_Text: intelligence
 --- !u!222 &171471650
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -915,7 +917,7 @@ GameObject:
   - component: {fileID: 237003698}
   - component: {fileID: 237003697}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Seperator Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1134,10 +1136,10 @@ MonoBehaviour:
   - {fileID: 2017525331}
   - {fileID: 20866721}
   statNames:
-  - STRENGTH
-  - AGILITY
-  - INTELLIGENCE
-  - VITALITY
+  - Strength
+  - Agility
+  - Intelligence
+  - Vitality
 --- !u!1 &473925764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,7 +1221,7 @@ GameObject:
   - component: {fileID: 491878562}
   - component: {fileID: 491878561}
   m_Layer: 5
-  m_Name: Stat Name
+  m_Name: Stat Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1277,7 +1279,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 0
 --- !u!222 &491878562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2046,7 +2048,7 @@ GameObject:
   - component: {fileID: 652951614}
   - component: {fileID: 652951613}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Seperator Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2120,7 +2122,7 @@ GameObject:
   - component: {fileID: 656836767}
   - component: {fileID: 656836766}
   m_Layer: 5
-  m_Name: Stat Name
+  m_Name: Stat Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2178,7 +2180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 0
 --- !u!222 &656836767
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2288,7 +2290,7 @@ GameObject:
   - component: {fileID: 714800058}
   - component: {fileID: 714800057}
   m_Layer: 5
-  m_Name: Stat Value
+  m_Name: Stat Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2346,7 +2348,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: AGILITY
+  m_Text: agility
 --- !u!222 &714800058
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2787,7 +2789,7 @@ GameObject:
   - component: {fileID: 939673565}
   - component: {fileID: 939673564}
   m_Layer: 5
-  m_Name: Stat Value
+  m_Name: Stat Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2845,7 +2847,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: STRENGTH
+  m_Text: strength
 --- !u!222 &939673565
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3217,6 +3219,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1051375611}
   tooltip: {fileID: 1783781575}
+--- !u!1 &1085790843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085790844}
+  - component: {fileID: 1085790846}
+  - component: {fileID: 1085790845}
+  m_Layer: 5
+  m_Name: RayCast Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1085790844
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085790843}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 20866719}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1085790845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085790843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1085790846
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085790843}
+  m_CullTransparentMesh: 0
 --- !u!1 &1091399291
 GameObject:
   m_ObjectHideFlags: 0
@@ -3305,6 +3381,7 @@ GameObject:
   - component: {fileID: 1212823931}
   - component: {fileID: 1212823930}
   - component: {fileID: 1212823929}
+  - component: {fileID: 1212823932}
   m_Layer: 5
   m_Name: Stat Tooltip
   m_TagString: Untagged
@@ -3348,7 +3425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 0
+  m_MinWidth: 450
   m_MinHeight: 280
   m_PreferredWidth: -1
   m_PreferredHeight: -1
@@ -3392,6 +3469,95 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!114 &1212823932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212823927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae66a0ba65a87a646a3130b385121291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatNameText: {fileID: 553989643}
+  StatModifiersLabelText: {fileID: 636182222}
+  StatModifiersText: {fileID: 523101462}
+--- !u!1 &1221781146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1221781147}
+  - component: {fileID: 1221781149}
+  - component: {fileID: 1221781148}
+  m_Layer: 5
+  m_Name: RayCast Target (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1221781147
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221781146}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2017525329}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1221781148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221781146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1221781149
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221781146}
+  m_CullTransparentMesh: 0
 --- !u!1 &1242585588
 GameObject:
   m_ObjectHideFlags: 0
@@ -3928,7 +4094,7 @@ GameObject:
   - component: {fileID: 1403910562}
   - component: {fileID: 1403910561}
   m_Layer: 5
-  m_Name: Stat Name
+  m_Name: Stat Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3986,7 +4152,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 0
 --- !u!222 &1403910562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3994,6 +4160,80 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403910559}
+  m_CullTransparentMesh: 0
+--- !u!1 &1410013609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1410013610}
+  - component: {fileID: 1410013612}
+  - component: {fileID: 1410013611}
+  m_Layer: 5
+  m_Name: RayCast Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1410013610
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410013609}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1440166603}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1410013611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410013609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1410013612
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410013609}
   m_CullTransparentMesh: 0
 --- !u!1 &1439740886
 GameObject:
@@ -4117,6 +4357,7 @@ RectTransform:
   - {fileID: 714800056}
   - {fileID: 1668537422}
   - {fileID: 1978714093}
+  - {fileID: 1410013610}
   m_Father: {fileID: 421328322}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4157,8 +4398,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de54f099fb0f6364f9844e6e44ddf2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 714800057}
-  ValueText: {fileID: 1668537423}
+  nameText: {fileID: 714800057}
+  valueText: {fileID: 1668537423}
+  tooltip: {fileID: 1212823932}
 --- !u!1 &1462683373
 GameObject:
   m_ObjectHideFlags: 0
@@ -4552,6 +4794,7 @@ RectTransform:
   - {fileID: 939673563}
   - {fileID: 1403910560}
   - {fileID: 652951612}
+  - {fileID: 1902665257}
   m_Father: {fileID: 421328322}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4592,8 +4835,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de54f099fb0f6364f9844e6e44ddf2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 939673564}
-  ValueText: {fileID: 1403910561}
+  nameText: {fileID: 939673564}
+  valueText: {fileID: 1403910561}
+  tooltip: {fileID: 1212823932}
 --- !u!1 &1668537421
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,7 +4850,7 @@ GameObject:
   - component: {fileID: 1668537424}
   - component: {fileID: 1668537423}
   m_Layer: 5
-  m_Name: Stat Name
+  m_Name: Stat Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4664,7 +4908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 0
 --- !u!222 &1668537424
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5645,6 +5889,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886010730}
   m_CullTransparentMesh: 0
+--- !u!1 &1902665256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1902665257}
+  - component: {fileID: 1902665259}
+  - component: {fileID: 1902665258}
+  m_Layer: 5
+  m_Name: RayCast Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1902665257
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902665256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1644148254}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1902665258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902665256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1902665259
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902665256}
+  m_CullTransparentMesh: 0
 --- !u!1 &1909204362
 GameObject:
   m_ObjectHideFlags: 0
@@ -5836,7 +6154,7 @@ GameObject:
   - component: {fileID: 1978714095}
   - component: {fileID: 1978714094}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Seperator Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5910,7 +6228,7 @@ GameObject:
   - component: {fileID: 2001471055}
   - component: {fileID: 2001471054}
   m_Layer: 5
-  m_Name: Stat Value
+  m_Name: Stat Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5968,7 +6286,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: VITALITY
+  m_Text: vitality
 --- !u!222 &2001471055
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6088,6 +6406,7 @@ RectTransform:
   - {fileID: 171471648}
   - {fileID: 491878560}
   - {fileID: 237003696}
+  - {fileID: 1221781147}
   m_Father: {fileID: 421328322}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6128,8 +6447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de54f099fb0f6364f9844e6e44ddf2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 171471649}
-  ValueText: {fileID: 491878561}
+  nameText: {fileID: 171471649}
+  valueText: {fileID: 491878561}
+  tooltip: {fileID: 1212823932}
 --- !u!1 &2042563613
 GameObject:
   m_ObjectHideFlags: 0
