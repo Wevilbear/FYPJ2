@@ -12,6 +12,15 @@ public class EquipmentSlot : ItemSlot {
         gameObject.name = EquipmentType.ToString() + " Slot";
     }
 
-  
+    public override bool CanReceiveItem(Item item)
+    {
+        if (item == null)
+            return true;
+
+        EquipableItem equipableItem = item as EquipableItem;
+        return equipableItem != null && equipableItem.EquipmentType == EquipmentType;
+
+    }
+
 
 }

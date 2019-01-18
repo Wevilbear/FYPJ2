@@ -31,7 +31,7 @@ public class EquipableItem : Item
     [Space]
     public EquipmentType EquipmentType;
 
-    public void Equip(InventoryManager c)
+    public void Equip(Character c)
     {
         if (StrengthBonus != 0)
             c.Strength.AddModifier(new StatModifier(StrengthBonus, StatModType.Flat, this));
@@ -52,7 +52,7 @@ public class EquipableItem : Item
             c.Vitality.AddModifier(new StatModifier(VitallityPercentBonus, StatModType.PercentMult, this));
     }
 
-    public void Unequip(InventoryManager c)
+    public void Unequip(Character c)
     {
         c.Strength.RemoveAllModifiersFromSource(this);
         c.Agility.RemoveAllModifiersFromSource(this);

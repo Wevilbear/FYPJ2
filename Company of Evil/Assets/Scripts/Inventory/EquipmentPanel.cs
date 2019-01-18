@@ -3,18 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EquipmentPanel : MonoBehaviour {
+public class EquipmentPanel : MonoBehaviour
+{
 
     [SerializeField] Transform equipmentSlotsParent;
     [SerializeField] EquipmentSlot[] equipmentSlots;
 
-    public event Action<Item> OnItemRightClickedEvent;
+    public event Action<ItemSlot> OnPointerEnterEvent;
+    public event Action<ItemSlot> OnPointerExitEvent;
+    public event Action<ItemSlot> OnRightClickEvent;
+    public event Action<ItemSlot> OnBeginDragEvent;
+    public event Action<ItemSlot> OnEndDragEvent;
+    public event Action<ItemSlot> OnDragEvent;
+    public event Action<ItemSlot> OnDropEvent;
 
     public void Awake()
     {
         for (int i = 0; i < equipmentSlots.Length; i++)
         {
-            equipmentSlots[i].OnRightClickEvent += OnItemRightClickedEvent;
+            equipmentSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
+            equipmentSlots[i].OnPointerExitEvent += OnPointerExitEvent;
+            equipmentSlots[i].OnRightClickEvent += OnRightClickEvent;
+            equipmentSlots[i].OnBeginDragEvent += OnBeginDragEvent;
+            equipmentSlots[i].OnEndDragEvent += OnEndDragEvent;
+            equipmentSlots[i].OnDragEvent += OnDragEvent;
+            equipmentSlots[i].OnDropEvent += OnDropEvent;
         }
     }
 
@@ -27,7 +40,7 @@ public class EquipmentPanel : MonoBehaviour {
     {
         for (int i = 0; i < equipmentSlots.Length; i++)
         {
-            if(equipmentSlots[i].EquipmentType == item.EquipmentType)
+            if (equipmentSlots[i].EquipmentType == item.EquipmentType)
             {
                 previousItem = (EquipableItem)equipmentSlots[i].Item;
                 equipmentSlots[i].Item = item;
