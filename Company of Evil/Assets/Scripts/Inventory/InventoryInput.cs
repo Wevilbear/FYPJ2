@@ -19,11 +19,12 @@ public class InventoryInput : MonoBehaviour
 
                 if (characterPanelGameObject.activeSelf)
                 {
-                    ShowMouseCursor();
+                    equipmentPanelGameObject.SetActive(true);
+                    //ShowMouseCursor();
                 }
                 else
                 {
-                    HideMouseCursor();
+                   // HideMouseCursor();
                 }
                 break;
             }
@@ -37,7 +38,7 @@ public class InventoryInput : MonoBehaviour
                 {
                     characterPanelGameObject.SetActive(true);
                     equipmentPanelGameObject.SetActive(false);
-                    ShowMouseCursor();
+                    //ShowMouseCursor();
 
                 }
                 else if (equipmentPanelGameObject.activeSelf)
@@ -47,7 +48,7 @@ public class InventoryInput : MonoBehaviour
                 else
                 {
                     characterPanelGameObject.SetActive(false);
-                    HideMouseCursor();
+                   // HideMouseCursor();
                 }
                 break;
             }
