@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Serialization;
 
 
-public class Inventory : MonoBehaviour
+public class Inventory : ItemContainer
 {
-   
-    [SerializeField] List<Item> startingItems;
-    [SerializeField] Transform itemsParent;
-    [SerializeField] ItemSlot[] itemSlots;
 
-    public event Action<ItemSlot> OnPointerEnterEvent;
-    public event Action<ItemSlot> OnPointerExitEvent;
-    public event Action<ItemSlot> OnRightClickEvent;
-    public event Action<ItemSlot> OnBeginDragEvent;
-    public event Action<ItemSlot> OnEndDragEvent;
-    public event Action<ItemSlot> OnDragEvent;
-    public event Action<ItemSlot> OnDropEvent;
+    [SerializeField]  Item [] startingItems;
+    [SerializeField]  Transform itemsParent;
 
-    public void Start()
+
+    public event Action<BaseItemSlot> OnPointerEnterEvent;
+    public event Action<BaseItemSlot> OnPointerExitEvent;
+    public event Action<BaseItemSlot> OnRightClickEvent;
+    public event Action<BaseItemSlot> OnBeginDragEvent;
+    public event Action<BaseItemSlot> OnEndDragEvent;
+    public event Action<BaseItemSlot> OnDragEvent;
+    public event Action<BaseItemSlot> OnDropEvent;
+
+    private void Start()
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
@@ -47,51 +48,19 @@ public class Inventory : MonoBehaviour
     {
         int i = 0;
 
-        for (; i < startingItems.Count && i < itemSlots.Length; i++)
+        //check for .length enxtension vs .count for starting items
+
+        for (; i < startingItems.Length && i < itemSlots.Length; i++)
         {
-            itemSlots[i].Item = startingItems[i];
+            itemSlots[i].Item = startingItems[i].GetCopy();
+            itemSlots[i].Amount = 1;
         }
         for (; i < itemSlots.Length; i++)
         {
             itemSlots[i].Item = null;
+            itemSlots[i].Amount = 0;
         }
     }
 
-    public bool AddItem(Item item)
-    {
-        for (int i = 0; i < itemSlots.Length; i++)
-        {
-            if (itemSlots[i].Item == null)
-            {
-                itemSlots[i].Item = item;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public bool RemoveItem(Item item)
-    {
-        for (int i = 0; i < itemSlots.Length; i++)
-        {
-            if (itemSlots[i].Item == item)
-            {
-                itemSlots[i].Item = null;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public bool IsFull()
-    {
-        for (int i = 0; i < itemSlots.Length; i++)
-        {
-            if (itemSlots[i].Item == null)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
+    
 }

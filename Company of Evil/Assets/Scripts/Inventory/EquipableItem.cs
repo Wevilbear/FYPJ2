@@ -31,6 +31,16 @@ public class EquipableItem : Item
     [Space]
     public EquipmentType EquipmentType;
 
+    public override Item GetCopy()
+    {
+        return Instantiate(this);
+    }
+
+    public override void Destroy()
+    {
+        Destroy(this);
+    }
+
     public void Equip(Character c)
     {
         if (StrengthBonus != 0)

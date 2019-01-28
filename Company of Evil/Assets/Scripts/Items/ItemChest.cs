@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemChest : MonoBehaviour
 {
     [SerializeField] Item item;
+    [SerializeField] int amount = 1;
     [SerializeField] Inventory inventory;
     [SerializeField] SpriteRenderer SpriteRenderer;
     [SerializeField] Color emptyColor;
@@ -34,13 +35,21 @@ public class ItemChest : MonoBehaviour
     private void Update()
     {
 
-        if (isInRange && Input.GetKeyDown(itemPickupKeyCode))
+        if (isInRange && !isEmpty && Input.GetKeyDown(itemPickupKeyCode))
         {
-            if (!isEmpty)
+            Item itemCopy = item.GetCopy();
+            if (inventory.AddItem(itemCopy))
             {
-                inventory.AddItem(item);
-                isEmpty = true;
-                SpriteRenderer.color = emptyColor;
+                amount--;
+                if (amount == 0)
+                {
+                    isEmpty = true;
+                    SpriteRenderer.color = emptyColor;
+                }
+            }
+            else
+            {
+                itemCopy.Destroy();
             }
 
         }
@@ -58,7 +67,7 @@ public class ItemChest : MonoBehaviour
 
     }
 
-    private void CheckCollision(GameObject gameObject,bool state)
+    private void CheckCollision(GameObject gameObject, bool state)
     {
         if (gameObject.CompareTag("Player"))
         {
