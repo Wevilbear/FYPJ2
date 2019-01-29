@@ -21,6 +21,7 @@ public class Character : MonoBehaviour
 
     [SerializeField] Inventory inventory;
     [SerializeField] EquipmentPanel equipmentPanel;
+    [SerializeField] CraftingWindow craftingWindow;
     [SerializeField] StatPanel statPanel;
     [SerializeField] ItemTooltip itemTooltip;
     [SerializeField] Image draggableItem;
@@ -54,9 +55,11 @@ public class Character : MonoBehaviour
         //Pointer Enter
         inventory.OnPointerEnterEvent += ShowTooltip;
         equipmentPanel.OnPointerEnterEvent += ShowTooltip;
+        craftingWindow.OnPointerEnterEvent += ShowTooltip;
         //Pointer Exit
         inventory.OnPointerExitEvent += HideTooltip;
         equipmentPanel.OnPointerExitEvent += HideTooltip;
+        craftingWindow.OnPointerExitEvent += HideTooltip;
         //Begin Drag
         inventory.OnBeginDragEvent += BeginDrag;
         equipmentPanel.OnBeginDragEvent += BeginDrag;

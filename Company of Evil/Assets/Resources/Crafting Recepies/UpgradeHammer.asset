@@ -10,7 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fe2ca61bf38c384d97b16b3360a3e67, type: 3}
-  m_Name: New Crafting Recipe
+  m_Name: UpgradeHammer
   m_EditorClassIdentifier: 
-  Materials: []
-  Results: []
+  Materials:
+  - Item: {fileID: 11400000, guid: 2d3b3701a0a64e048840098c1baa6e08, type: 2}
+    Amount: 1
+  - Item: {fileID: 11400000, guid: fb6ca5017cff0d24288fcc0aef419adb, type: 2}
+    Amount: 1
+  Results:
+  - Item: {fileID: 11400000, guid: 3d072f6d56648d54a82e48def4d7fe40, type: 2}
+    Amount: 1
