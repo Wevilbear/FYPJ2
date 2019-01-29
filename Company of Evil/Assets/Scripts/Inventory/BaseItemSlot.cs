@@ -47,10 +47,15 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             _amount = value;
             if (_amount < 0) _amount = 0;
             if (_amount == 0) Item = null;
-            amountText.enabled = _item != null && _amount > 1;
-            if(amountText.enabled)
+
+            if (amountText != null)
             {
-                amountText.text = _amount.ToString();
+                amountText.enabled = _item != null && _amount > 1;
+
+                if (amountText.enabled)
+                {
+                    amountText.text = _amount.ToString();
+                }
             }
         }
     }

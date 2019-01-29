@@ -20,20 +20,30 @@ public class Inventory : ItemContainer
     public event Action<BaseItemSlot> OnDragEvent;
     public event Action<BaseItemSlot> OnDropEvent;
 
+    private bool isFIrstRun = true;
+
     private void Start()
     {
-        for (int i = 0; i < itemSlots.Length; i++)
-        {
-            itemSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
-            itemSlots[i].OnPointerExitEvent += OnPointerExitEvent;
-            itemSlots[i].OnRightClickEvent += OnRightClickEvent;
-            itemSlots[i].OnBeginDragEvent += OnBeginDragEvent;
-            itemSlots[i].OnEndDragEvent += OnEndDragEvent;
-            itemSlots[i].OnDragEvent += OnDragEvent;
-            itemSlots[i].OnDropEvent += OnDropEvent;
-
-        }
         SetStartingItems();
+    }
+
+    private void Update()
+    {
+        if (isFIrstRun)
+        {
+            for (int i = 0; i < itemSlots.Length; i++)
+            {
+                itemSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
+                itemSlots[i].OnPointerExitEvent += OnPointerExitEvent;
+                itemSlots[i].OnRightClickEvent += OnRightClickEvent;
+                itemSlots[i].OnBeginDragEvent += OnBeginDragEvent;
+                itemSlots[i].OnEndDragEvent += OnEndDragEvent;
+                itemSlots[i].OnDragEvent += OnDragEvent;
+                itemSlots[i].OnDropEvent += OnDropEvent;
+
+            }
+            isFIrstRun = false;
+        }
     }
 
     private void OnValidate()
