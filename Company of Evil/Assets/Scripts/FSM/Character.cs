@@ -9,15 +9,15 @@ public enum MovementAnimation
     Run
 }
 
-[RequireComponent(typeof(StateMachine))]
+//[RequireComponent(typeof(StateMachine))]
 public class Character : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    //[SerializeField] private Animator animator;
 
-    [SerializeField] private Transform target;
+    //[SerializeField] private Transform target;
 
-    [SerializeField] private float singleMoveTime = 0.5f;
-    [SerializeField] private float rotationSpeed = 5f;
+    //[SerializeField] private float singleMoveTime = 0.5f;
+    //[SerializeField] private float rotationSpeed = 5f;
 
     [SerializeField] Inventory inventory;
     [SerializeField] EquipmentPanel equipmentPanel;
@@ -28,25 +28,29 @@ public class Character : MonoBehaviour
 
     private BaseItemSlot dragItemSlot;
 
-
-
-    private StateMachine fsm;
+    //private StateMachine fsm;
 
     private const string idleTrigger = "Idle";
     private const string runTrigger = "Run";
 
-    Queue<Node> path;
+    //Queue<Node> path;
 
     public CharacterStat Strength;
     public CharacterStat Agility;
     public CharacterStat Intelligence;
     public CharacterStat Vitality;
 
-    private void Start()
+    [SerializeField] float speed;
+
+    private Animator animator;
+
+    protected Vector2 direction;
+
+    protected virtual void Start()
     {
         statPanel.SetStats(Strength, Agility, Intelligence, Vitality);
         statPanel.UpdateStatValues();
-
+        animator = GetComponent<Animator>();
         //Setup Events:
 
         //Right Click
@@ -73,119 +77,119 @@ public class Character : MonoBehaviour
         inventory.OnDropEvent += Drop;
         equipmentPanel.OnDropEvent += Drop;
 
-        fsm = GetComponent<StateMachine>();
+        //fsm = GetComponent<StateMachine>();
 
-        fsm.Initialize(this);
+        //fsm.Initialize(this);
 
-        Messenger.OnCheckNode += OnCheckNode;
-        Messenger.OnSelectedTarget += OnSelectedTarget;
+        //Messenger.OnCheckNode += OnCheckNode;
+        //Messenger.OnSelectedTarget += OnSelectedTarget;
 
         Debug.Log("Character is started");
     }
 
-    
 
-    private void OnDestroy()
-    {
-        Messenger.OnCheckNode -= OnCheckNode;
-        Messenger.OnSelectedTarget -= OnSelectedTarget;
-    }
 
-    private void MoveToTarget(Node targetNode)
-    {
-        path = GetPath(targetNode);
+    //private void OnDestroy()
+    //{
+    //    Messenger.OnCheckNode -= OnCheckNode;
+    //    Messenger.OnSelectedTarget -= OnSelectedTarget;
+    //}
 
-        fsm.ChangeState(new FollowState(fsm, path, singleMoveTime, rotationSpeed));
-    }
+    //private void MoveToTarget(Node targetNode)
+    //{
+    //    path = GetPath(targetNode);
 
-    private Queue<Node> GetPath(Node targetNode)
-    {
-        Queue<Node> path = null;
+    //    fsm.ChangeState(new FollowState(fsm, path, singleMoveTime, rotationSpeed));
+    //}
 
-        Node startNode = GridManager.Instance.GetClosestNodeToWorldPosition(Transform.position);
+    //private Queue<Node> GetPath(Node targetNode)
+    //{
+    //    Queue<Node> path = null;
 
-        List<Node> nodes = GridManager.Instance.GetPath(startNode, targetNode);
+    //    Node startNode = GridManager.Instance.GetClosestNodeToWorldPosition(Transform.position);
 
-        if (nodes != null && nodes.Count > 0)
-        {
-            path = new Queue<Node>();
+    //    List<Node> nodes = GridManager.Instance.GetPath(startNode, targetNode);
 
-            for (int i = 0; i < nodes.Count; i++)
-            {
-                path.Enqueue(nodes[i]);
-            }
-        }
+    //    if (nodes != null && nodes.Count > 0)
+    //    {
+    //        path = new Queue<Node>();
 
-        return path;
-    }
+    //        for (int i = 0; i < nodes.Count; i++)
+    //        {
+    //            path.Enqueue(nodes[i]);
+    //        }
+    //    }
 
-    private void OnCheckNode(Node node)
-    {
-        path = GetPath(node);
-    }
+    //    return path;
+    //}
 
-    private void OnSelectedTarget(Node node)
-    {
-        MoveToTarget(node);
-    }
+    //private void OnCheckNode(Node node)
+    //{
+    //    path = GetPath(node);
+    //}
 
-    public void PlayMovementAnimation(MovementAnimation movementAnimation)
-    {
-        switch (movementAnimation)
-        {
-            case MovementAnimation.Idle:
-                animator.ResetTrigger(runTrigger);
-                animator.SetTrigger(idleTrigger);
-                break;
-            case MovementAnimation.Run:
-                animator.ResetTrigger(idleTrigger);
-                animator.SetTrigger(runTrigger);
-                break;
-        }
-    }
+    //private void OnSelectedTarget(Node node)
+    //{
+    //    MoveToTarget(node);
+    //}
 
-    private Transform myTransform;
+    //public void PlayMovementAnimation(MovementAnimation movementAnimation)
+    //{
+    //    switch (movementAnimation)
+    //    {
+    //        case MovementAnimation.Idle:
+    //            animator.ResetTrigger(runTrigger);
+    //            animator.SetTrigger(idleTrigger);
+    //            break;
+    //        case MovementAnimation.Run:
+    //            animator.ResetTrigger(idleTrigger);
+    //            animator.SetTrigger(runTrigger);
+    //            break;
+    //    }
+    //}
 
-    public Transform Transform
-    {
-        get
-        {
-            if (myTransform == null)
-            {
-                myTransform = GetComponent<Transform>();
-            }
+    //private Transform myTransform;
 
-            return myTransform;
-        }
+    //public Transform Transform
+    //{
+    //    get
+    //    {
+    //        if (myTransform == null)
+    //        {
+    //            myTransform = GetComponent<Transform>();
+    //        }
 
-        set
-        {
-            myTransform = value;
-        }
-    }
+    //        return myTransform;
+    //    }
 
-    private void OnDrawGizmos()
-    {
-        TryToDrawPath();
-    }
+    //    set
+    //    {
+    //        myTransform = value;
+    //    }
+    //}
 
-    private void TryToDrawPath()
-    {
-        if (path != null && path.Count > 0)
-        {
-            Vector3 offset = Vector3.up;
+    //private void OnDrawGizmos()
+    //{
+    //    TryToDrawPath();
+    //}
 
-            foreach (Node pathNode in path)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawWireCube(GridManager.Instance.GetWorldPosition(pathNode), Vector3.one);
-            }
+    //private void TryToDrawPath()
+    //{
+    //    if (path != null && path.Count > 0)
+    //    {
+    //        Vector3 offset = Vector3.up;
 
-            Node startPoint = GridManager.Instance.GetClosestNodeToWorldPosition(myTransform.position);
+    //        foreach (Node pathNode in path)
+    //        {
+    //            Gizmos.color = Color.red;
+    //            Gizmos.DrawWireCube(GridManager.Instance.GetWorldPosition(pathNode), Vector3.one);
+    //        }
 
-            Gizmos.DrawWireCube(GridManager.Instance.GetWorldPosition(startPoint), Vector3.one);
-        }
-    }
+    //        Node startPoint = GridManager.Instance.GetClosestNodeToWorldPosition(myTransform.position);
+
+    //        Gizmos.DrawWireCube(GridManager.Instance.GetWorldPosition(startPoint), Vector3.one);
+    //    }
+    //}
 
     //INVENTORY CODE
 
@@ -251,12 +255,12 @@ public class Character : MonoBehaviour
     {
         if (dragItemSlot == null) return;
 
-        if(dropItemSlot.CanAddStack(dragItemSlot.Item))
+        if (dropItemSlot.CanAddStack(dragItemSlot.Item))
         {
             AddStacks(dropItemSlot);
         }
 
-      else if (dropItemSlot.CanReceiveItem(dragItemSlot.Item) && dragItemSlot.CanReceiveItem(dropItemSlot.Item))
+        else if (dropItemSlot.CanReceiveItem(dragItemSlot.Item) && dragItemSlot.CanReceiveItem(dropItemSlot.Item))
         {
             SwapItems(dropItemSlot);
         }
@@ -337,9 +341,47 @@ public class Character : MonoBehaviour
         }
     }
 
+    //Movement code
+
+    protected virtual void Update()
+    {
+
+        Move();
+    }
+
+    public void Move()
+    {
+        transform.Translate(direction * speed * Time.deltaTime);
+
+
+
+        if (direction.x != 0 || direction.y != 0)
+        {
+            AnimateMovement(direction);
+        }
+        else
+        {
+            animator.SetLayerWeight(1, 0);
+        }
+    }
+
+
+
+    public void AnimateMovement(Vector2 direction)
+    {
+
+        animator.SetLayerWeight(1, 1);
+
+        //Sets the animation parameter so that he faces the correct direction
+        animator.SetFloat("x", direction.x);
+        animator.SetFloat("y", direction.y);
+    }
+
     private void OnValidate()
     {
         if (itemTooltip == null)
             itemTooltip = FindObjectOfType<ItemTooltip>();
+
+
     }
 }
