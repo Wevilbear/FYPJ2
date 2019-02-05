@@ -24,7 +24,7 @@ public class Player : Character
 
     private int exitIndex = 2;
 
-    private Transform target;
+    public Transform MyTarget { get; set; }
 
     [SerializeField]
     private Block[] blocks;
@@ -34,7 +34,7 @@ public class Player : Character
     {
         health.Initialize(initHealth, initHealth);
         mana.Initialize(initMana, initMana);
-        target = GameObject.Find("Target").transform;
+      
         base.Start();
     }
 
@@ -79,7 +79,7 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Block();
-            if (!isAttacking && !IsMoving && InLineOfSight())
+            if (MyTarget != null && !isAttacking && !IsMoving && InLineOfSight())
             {
                 attackRoutine = StartCoroutine(Attack());
             }
@@ -112,9 +112,9 @@ public class Player : Character
 
     private bool InLineOfSight()
     {
-        Vector3 targetDirection = (target.transform.position - transform.position).normalized;
+        Vector3 targetDirection = (MyTarget.transform.position - transform.position).normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection, Vector2.Distance(transform.position, target.transform.position), 512);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection, Vector2.Distance(transform.position, MyTarget.transform.position), 512);
 
 
         if (hit.collider == null)
