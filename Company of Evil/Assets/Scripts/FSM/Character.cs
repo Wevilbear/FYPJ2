@@ -42,11 +42,15 @@ public class Character : MonoBehaviour
 
     [SerializeField] float speed;
 
-    private Animator myAnimator;
+    protected Animator myAnimator;
 
     protected Vector2 direction;
 
     private Rigidbody2D myRigidbody;
+
+    protected bool isAttacking;
+
+    protected Coroutine attackRoutine;
 
     public bool IsMoving
     {
@@ -376,26 +380,22 @@ public class Character : MonoBehaviour
     {
         if (IsMoving)
         {
-            AnimateMovement(direction);
+            ActivateLayer("WalkLayer");
+            myAnimator.SetFloat("x", direction.x);
+            myAnimator.SetFloat("y", direction.y);
+
+        }
+        else if (isAttacking)
+        {
+            ActivateLayer("AttackLayer");
         }
         else
         {
-            ActivateLayer("idleLayer");
+            ActivateLayer("IdleLayer");
         }
     }
 
-
-
-
-    public void AnimateMovement(Vector2 direction)
-    {
-
-        myAnimator.SetLayerWeight(1, 1);
-
-        //Sets the animation parameter so that he faces the correct direction
-        myAnimator.SetFloat("x", direction.x);
-        myAnimator.SetFloat("y", direction.y);
-    }
+    
 
     public void ActivateLayer(string layerName)
     {
@@ -405,6 +405,18 @@ public class Character : MonoBehaviour
         }
 
         myAnimator.SetLayerWeight(myAnimator.GetLayerIndex(layerName),1);
+    }
+
+    public void StopAttack()
+    {
+        if (attackRoutine != null)
+        {
+            StopCoroutine(attackRoutine);
+
+            isAttacking = false; 
+
+            myAnimator.SetBool("attack", isAttacking); 
+        }
     }
 
     private void OnValidate()
