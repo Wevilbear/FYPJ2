@@ -16,8 +16,7 @@ public class Player : Character
     [SerializeField]
     private float initMana;
 
-    [SerializeField]
-    private GameObject[] spellPrefab;
+    private SpellBook spellBook;
 
     [SerializeField]
     private Transform[] exitPoints;
@@ -32,6 +31,7 @@ public class Player : Character
     // Start is called before the first frame update
     protected override void Start()
     {
+        spellBook = GetComponent<SpellBook>();
         health.Initialize(initHealth, initHealth);
         mana.Initialize(initMana, initMana);
 
@@ -83,14 +83,16 @@ public class Player : Character
 
     private IEnumerator Attack(int spellIndex)
     {
+        Spell newSpell = spellBook.CastSpell(spellIndex);
+
         isAttacking = true;
 
         myAnimator.SetBool("attack", isAttacking);
 
         //hardcodded must remove
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(newSpell.MyCastTime);
 
-        Spells s= Instantiate(spellPrefab[spellIndex], exitPoints[exitIndex].position, Quaternion.identity).GetComponent<Spells>();
+        SpellScript s= Instantiate(newSpell.MySpellPrefab, exitPoints[exitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
 
         s.MyTarget = MyTarget;
 
