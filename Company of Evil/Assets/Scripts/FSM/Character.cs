@@ -42,15 +42,27 @@ public class Character : MonoBehaviour
 
     [SerializeField] float speed;
 
-    private Animator animator;
+    private Animator myAnimator;
 
     protected Vector2 direction;
+
+    private Rigidbody2D myRigidbody;
+
+    public bool IsMoving
+    {
+        get
+        {
+            return direction.x != 0 || direction.y != 0;
+        }
+    }
 
     protected virtual void Start()
     {
         statPanel.SetStats(Strength, Agility, Intelligence, Vitality);
         statPanel.UpdateStatValues();
-        animator = GetComponent<Animator>();
+
+        myRigidbody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
         //Setup Events:
 
         //Right Click
@@ -159,7 +171,7 @@ public class Character : MonoBehaviour
     //            myTransform = GetComponent<Transform>();
     //        }
 
-    //        return myTransform;
+    //        return myTrahannsform;
     //    }
 
     //    set
@@ -345,36 +357,54 @@ public class Character : MonoBehaviour
 
     protected virtual void Update()
     {
+        HandleLayers();
+       
+    }
 
+    private void FixedUpdate()
+    {
         Move();
     }
 
     public void Move()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+       myRigidbody.velocity = direction.normalized *speed;
+   
+    }
 
-
-
-        if (direction.x != 0 || direction.y != 0)
+    public void HandleLayers()
+    {
+        if (IsMoving)
         {
             AnimateMovement(direction);
         }
         else
         {
-            animator.SetLayerWeight(1, 0);
+            ActivateLayer("idleLayer");
         }
     }
+
 
 
 
     public void AnimateMovement(Vector2 direction)
     {
 
-        animator.SetLayerWeight(1, 1);
+        myAnimator.SetLayerWeight(1, 1);
 
         //Sets the animation parameter so that he faces the correct direction
-        animator.SetFloat("x", direction.x);
-        animator.SetFloat("y", direction.y);
+        myAnimator.SetFloat("x", direction.x);
+        myAnimator.SetFloat("y", direction.y);
+    }
+
+    public void ActivateLayer(string layerName)
+    {
+        for (int i = 0; i < myAnimator.layerCount; i++)
+        {
+            myAnimator.SetLayerWeight(i, 0);
+        }
+
+        myAnimator.SetLayerWeight(myAnimator.GetLayerIndex(layerName),1);
     }
 
     private void OnValidate()
