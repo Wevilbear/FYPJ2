@@ -3118,6 +3118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163b6cf7e76ca9042999bf407a23c1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  castingBar: {fileID: 109767217}
+  spellName: {fileID: 465013991}
+  castTime: {fileID: 870089851}
+  icon: {fileID: 1483728350}
+  canvasGroup: {fileID: 731071312}
   spells:
   - name: Fireball
     damage: 5
@@ -4167,6 +4172,7 @@ GameObject:
   - component: {fileID: 731071309}
   - component: {fileID: 731071311}
   - component: {fileID: 731071310}
+  - component: {fileID: 731071312}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -4234,6 +4240,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731071308}
   m_CullTransparentMesh: 0
+--- !u!225 &731071312
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731071308}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &743560143
 GameObject:
   m_ObjectHideFlags: 0

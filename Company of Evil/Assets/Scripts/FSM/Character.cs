@@ -52,6 +52,9 @@ public class Character : MonoBehaviour
 
     protected Coroutine attackRoutine;
 
+    [SerializeField]
+    protected Transform hitBox;
+
     public bool IsMoving
     {
         get
@@ -378,12 +381,16 @@ public class Character : MonoBehaviour
 
     public void HandleLayers()
     {
+        //Checks if we are moving or standing still, if we are moving then we need to play the move animation
         if (IsMoving)
         {
             ActivateLayer("WalkLayer");
+
+            //Sets the animation parameter so that he faces the correct direction
             myAnimator.SetFloat("x", direction.x);
             myAnimator.SetFloat("y", direction.y);
 
+            StopAttack();
         }
         else if (isAttacking)
         {
@@ -391,6 +398,7 @@ public class Character : MonoBehaviour
         }
         else
         {
+            //Makes sure that we will go back to idle when we aren't pressing any keys.
             ActivateLayer("IdleLayer");
         }
     }
@@ -407,15 +415,15 @@ public class Character : MonoBehaviour
         myAnimator.SetLayerWeight(myAnimator.GetLayerIndex(layerName),1);
     }
 
-    public void StopAttack()
+    public virtual void StopAttack()
     {
-        if (attackRoutine != null)
+        isAttacking = false; //Makes sure that we are not attacking
+
+        myAnimator.SetBool("attack", isAttacking); //Stops the attack animation
+
+        if (attackRoutine != null) //Checks if we have a reference to an co routine
         {
             StopCoroutine(attackRoutine);
-
-            isAttacking = false; 
-
-            myAnimator.SetBool("attack", isAttacking); 
         }
     }
 

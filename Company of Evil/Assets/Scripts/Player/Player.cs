@@ -83,6 +83,8 @@ public class Player : Character
 
     private IEnumerator Attack(int spellIndex)
     {
+        Transform currentTarget = MyTarget; 
+
         Spell newSpell = spellBook.CastSpell(spellIndex);
 
         isAttacking = true;
@@ -92,9 +94,14 @@ public class Player : Character
         //hardcodded must remove
         yield return new WaitForSeconds(newSpell.MyCastTime);
 
-        SpellScript s= Instantiate(newSpell.MySpellPrefab, exitPoints[exitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
+        if(currentTarget != null && InLineOfSight())
+        {
+            SpellScript s = Instantiate(newSpell.MySpellPrefab, exitPoints[exitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
 
-        s.MyTarget = MyTarget;
+            s.MyTarget = currentTarget;
+        }
+
+      
 
         StopAttack();
     }
@@ -133,5 +140,14 @@ public class Player : Character
             b.Deactivate();
         }
         blocks[exitIndex].Activate();
+    }
+
+    public override void StopAttack()
+    {
+        //Stop the spellbook from casting
+        spellBook.StopCasting();
+
+        //Makes sure that we stop the cast in our character.
+        base.StopAttack();
     }
 }
