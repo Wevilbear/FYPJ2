@@ -34,7 +34,7 @@ public class Player : Character
     {
         health.Initialize(initHealth, initHealth);
         mana.Initialize(initMana, initMana);
-      
+
         base.Start();
     }
 
@@ -76,37 +76,36 @@ public class Player : Character
             direction += Vector2.right;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Block();
-            if (MyTarget != null && !isAttacking && !IsMoving && InLineOfSight())
-            {
-                attackRoutine = StartCoroutine(Attack());
-            }
 
-        }
     }
 
 
 
-    private IEnumerator Attack()
+    private IEnumerator Attack(int spellIndex)
     {
-
-
         isAttacking = true;
 
         myAnimator.SetBool("attack", isAttacking);
 
         //hardcodded must remove
         yield return new WaitForSeconds(1);
-        CastSpell();
+
+        Spells s= Instantiate(spellPrefab[spellIndex], exitPoints[exitIndex].position, Quaternion.identity).GetComponent<Spells>();
+
+        s.MyTarget = MyTarget;
 
         StopAttack();
     }
 
-    public void CastSpell()
+    public void CastSpell(int spellIndex)
     {
-        Instantiate(spellPrefab[0], exitPoints[exitIndex].position, Quaternion.identity);
+        Block();
+        if (MyTarget != null && !isAttacking && !IsMoving && InLineOfSight())
+        {
+            attackRoutine = StartCoroutine(Attack(spellIndex));
+        }
+
+
 
     }
 
